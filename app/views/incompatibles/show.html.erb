@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Mate:</strong>
+  <%= @incompatible.mate_id %>
+</p>
+
+<p>
+  <strong>Incompatibility:</strong>
+  <%= @incompatible.incompatibility_id %>
+</p>
+
+<%= link_to 'Edit', edit_incompatible_path(@incompatible) %> |
+<%= link_to 'Back', incompatibles_path %>

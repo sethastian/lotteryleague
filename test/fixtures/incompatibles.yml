@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mate_id: 1
+  incompatibility_id: 1
+
+two:
+  mate_id: 1
+  incompatibility_id: 1

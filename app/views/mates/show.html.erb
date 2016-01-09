@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @mate.name %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @mate.number %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @mate.image %>
+</p>
+
+<p>
+  <strong>Instrument:</strong>
+  <%= @mate.instrument %>
+</p>
+
+<%= link_to 'Edit', edit_mate_path(@mate) %> |
+<%= link_to 'Back', mates_path %>

@@ -1,0 +1,33 @@
+<%= form_for(@mate) do |f| %>
+  <% if @mate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mate.errors.count, "error") %> prohibited this mate from being saved:</h2>
+
+      <ul>
+      <% @mate.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :number %><br>
+    <%= f.number_field :number %>
+  </div>
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.text_field :image %>
+  </div>
+  <div class="field">
+    <%= f.label :instrument %><br>
+    <%= f.text_field :instrument %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

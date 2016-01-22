@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160109161712) do
+ActiveRecord::Schema.define(version: 20160118051402) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -49,14 +49,24 @@ ActiveRecord::Schema.define(version: 20160109161712) do
   create_table "bands", force: :cascade do |t|
     t.integer  "number"
     t.string   "title"
+    t.string   "player1"
+    t.string   "player2"
+    t.string   "player3"
+    t.string   "player4"
+    t.integer  "draft_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "bands", ["draft_id"], name: "index_bands_on_draft_id"
+
   create_table "drafts", force: :cascade do |t|
     t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "liveBand"
+    t.string   "round"
+    t.integer  "numberOfBands"
   end
 
   create_table "incompatibles", force: :cascade do |t|
@@ -74,8 +84,37 @@ ActiveRecord::Schema.define(version: 20160109161712) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "instrument"
+    t.integer  "band_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
+
+  add_index "mates", ["band_id"], name: "index_mates_on_band_id"
+
+  create_table "players", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "number"
+    t.string   "instrument"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "email"
+    t.text     "practiceLocation"
+    t.integer  "band_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "phone"
+  end
+
+  add_index "players", ["band_id"], name: "index_players_on_band_id"
+
+  create_table "related_players", id: false, force: :cascade do |t|
+    t.integer "player_id"
+    t.integer "related_player_id"
+  end
+
+  add_index "related_players", ["player_id", "related_player_id"], name: "index_related_players_on_player_id_and_related_player_id", unique: true
+  add_index "related_players", ["related_player_id", "player_id"], name: "index_related_players_on_related_player_id_and_player_id", unique: true
 
 end

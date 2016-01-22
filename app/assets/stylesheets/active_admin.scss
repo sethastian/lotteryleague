@@ -12,13 +12,13 @@
 @import "active_admin/minicolors/base";
 @import "activeadmin_addons/all";
 
-
+//= require select2
 
 // Active Admin's got SASS!
 @import "flattened_active_admin/mixins";
 @import "flattened_active_admin/base";
 @import "responsive_active_admin";
-
+@import "active_admin/select2/base";
 
 
 #header{height:60px}
@@ -32,3 +32,8 @@
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+body.active_admin {
+  @import "select2";
+}
+
+form input[type=text]{border:none !important;}

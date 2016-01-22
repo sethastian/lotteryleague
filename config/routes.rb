@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
+  resources :players
   resources :incompatibles
   resources :drafts
   resources :bands
   resources :mates
+  get "incompatible_player" => 'home#incompatiblePlayer'
+  get "compatible_player" => 'home#compatiblePlayer'
+  get 'livedraft' => 'home#comptest'
+  get "home/compatible"
+  get "livebands" => 'home#bands'
+  get "add_player_to_band" => "home#add_player_to_band"
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # The priority is based upon order of creation: first created -> highest priority.

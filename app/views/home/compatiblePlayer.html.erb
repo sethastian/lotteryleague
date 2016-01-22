@@ -1,0 +1,13 @@
+<div class="compatible-screen">
+	<div class="row">
+		<div class="small-12 columns text-center" style="padding-top:100px;">
+			<div class="compatible-text">COMPATIBLE</div>
+			
+			<% @livePlayer = Player.where(number: params[:player].to_i).first %>
+
+
+			<%= link_to raw("Add <strong>#{@livePlayer.name}</strong> to <strong>Band #{@band.number}</strong>"), add_player_to_band_path(player: params[:player], round: params[:round], band: params[:band]), class:'button' %> <br />
+			<%= link_to "<< Back To Draft", livedraft_path, style:'color:#fff' %>
+		</div>
+	</div>
+</div>

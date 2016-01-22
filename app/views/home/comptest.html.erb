@@ -1,0 +1,75 @@
+	<div class="row">
+		<div class="small-6 text-center small-centered columns">
+			<%= image_tag("logo.jpg") %>
+			<h3>- ROUND <%= @draft.round %> -</h3>
+			<h1 style="margin-bottom:15px;">BAND <%= @band.number %></h1>
+		</div>
+	</div>
+	<div class="row band-box">
+		<div class="small-8 columns small-centered text-center">
+			
+
+		
+			<%= form_tag home_compatible_path, method: :get do %>
+
+
+				      	<div class="row">
+				        	<div class="small-4 columns">
+				          		<label for="right-label" class="right inline">PLAYER 1:</label>
+				        	</div>
+				        	<div class="small-5 left columns">
+				          		<% if @draft.round == "1" %>
+				          			<%= text_field_tag :player1, @band.player1, :required => true  %>
+				          		<% else %>
+				          			<%= text_field_tag :player1, @band.player1 %>
+				          		<% end %>
+				        	</div>
+				      	</div>
+				      	<div class="row small-margin">
+				        	<div class="small-4 columns">
+				          		<label for="right-label" class="right inline">PLAYER 2:</label>
+				        	</div>
+				        	<div class="small-5 left columns">
+				        		<% if @draft.round == "2" %>
+				          			<%= text_field_tag :player2, @band.player2, :required => true  %>
+				          		<% else %>
+				          			<%= text_field_tag :player2, @band.player2 %>
+				          		<% end %>
+				        	</div>
+				      	</div>
+				      	<div class="row small-margin">
+				        	<div class="small-4 columns">
+				          		<label for="right-label" class="right inline">PLAYER 3:</label>
+				        	</div>
+				        	<div class="small-5 left columns">
+				          		<% if @draft.round == "3" %>
+				          			<%= text_field_tag :player3, @band.player3, :required => true  %>
+				          		<% else %>
+				          			<%= text_field_tag :player3, @band.player3 %>
+				          		<% end %>
+				        	</div>
+				      	</div>
+				      	<div class="row small-margin">
+				        	<div class="small-4 columns">
+				          		<label for="right-label" class="right inline">PLAYER 4:</label>
+				        	</div>
+				        	<div class="small-5 left columns">
+				          		<% if @draft.round == "4" %>
+				          			<%= text_field_tag :player4, @band.player4, :required => true  %>
+				          		<% else %>
+				          			<%= text_field_tag :player4, @band.player4 %>
+				          		<% end %>
+				        	</div>
+				      	</div>
+				      	<div class="row small-margin">
+				        	<div class="small-12 columns text-center">
+				          		<%= hidden_field_tag :band, @band.number %>
+								<%= hidden_field_tag :round, @draft.round %>
+								<%= submit_tag "Compatibile?", :class => 'button', name: nil %>	
+				        	</div>
+				      	</div>		    
+
+
+		  	<% end %>
+		</div>
+	</div>

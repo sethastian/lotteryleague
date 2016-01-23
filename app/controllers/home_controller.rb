@@ -46,6 +46,18 @@ class HomeController < InheritedResources::Base
   	redirect_to livedraft_path
   end
 
+  def test_for_trade(player, band, round)
+
+  	#look at previous band
+
+  	#check how many people in this band
+
+  	#store last player in variable
+
+  	#check if current
+
+
+  end
 
   def compatible
   	@player1 = Player.find_by_number(params[:player1])

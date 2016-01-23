@@ -59,7 +59,7 @@ index do
       f.input :number
       f.input :instrument
       f.input :image, :required => false, :hint => image_tag(f.object.image.url(:thumb))
-      f.input :related_players, as: :select2_multiple
+      f.input :related_players, as: :select2_multiple, label: "Incompatible Players"
     end
     f.actions
   end

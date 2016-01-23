@@ -18,5 +18,15 @@ permit_params :title, :liveBand, :round, :numberOfBands
 #   permitted
 # end
 
+form do |f|
+	f.inputs "Draft" do
+		f.input :title
+		f.input :liveBand, label: "Live Band"
+		f.input :round, label: "Round"
+		f.input :numberOfBands, label: "Number Of Bands"
+	end
+	f.actions
+end
+
 
 end

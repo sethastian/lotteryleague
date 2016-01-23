@@ -1,3 +1,3 @@
 module ApplicationHelper
-	@currentBand = Draft.first.liveBand
+	#@currentBand = Draft.first.liveBand
 end

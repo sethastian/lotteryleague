@@ -2,12 +2,12 @@ ActiveAdmin.register Draft do
 
 after_create do |draft|
     for i in 1..draft.numberOfBands
-	   	@band = Band.new(number: i, draft: draft)
+	   	@band = Band.new(number: i, draft_id: draft)
 	   	@band.save
 	end
 end
 
-permit_params :title, :liveBand, :round, :numberOfBands
+permit_params :title, :liveBand, :round, :numberOfBands, :id
 
 
 # or

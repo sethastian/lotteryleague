@@ -2,7 +2,7 @@ ActiveAdmin.register Draft do
 
 after_create do |draft|
     for i in 1..draft.numberOfBands
-	   	@band = Band.new(number: i, draft_id: draft)
+	   	@band = Band.new(number: i, draft: draft)
 	   	@band.save
 	end
 end

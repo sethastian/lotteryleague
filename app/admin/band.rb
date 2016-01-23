@@ -14,6 +14,7 @@ permit_params :number, :player1, :player2, :player3, :player4
 # end
 
 index do
+  selectable_column
 	id_column
     column :number
     column :player1

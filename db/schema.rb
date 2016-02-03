@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160118051402) do
+ActiveRecord::Schema.define(version: 20160130154520) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20160118051402) do
     t.string   "liveBand"
     t.string   "round"
     t.integer  "numberOfBands"
+    t.integer  "livePlayer"
   end
 
   create_table "incompatibles", force: :cascade do |t|

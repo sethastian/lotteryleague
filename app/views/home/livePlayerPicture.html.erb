@@ -1,0 +1,9 @@
+<div id="livePlayerPicture">
+	<div class="row">
+		<div class="small-8 columns small-centered text-center">
+			<h1><%= @player.name %></h1>
+			<p><%= image_tag(@player.image.url) %></p>
+			<%= link_to "Test Compatibility", livedraft_path(:liveplayer => @player.number), class: 'button' %>
+		</div>
+	</div>
+</div>

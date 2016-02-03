@@ -1,0 +1,17 @@
+<div id="mjView">
+	<%= @draftPlayer %>
+</div>
+<script>
+$( document ).ready(function() {
+		var livePlayer;
+
+	showLivePlayer = function(livePlayer) {
+	  return $('#mjView').text(livePlayer);
+
+	};
+
+	gon.watch('liveplayer', {
+	  interval: 1000
+	}, showLivePlayer);
+});
+</script>

@@ -1,0 +1,12 @@
+
+<div class="row">
+	<div class="small-8 columns small-centered text-center">
+		<div id = "livePlayer" class="white-glow">
+			<h1>ENTER PLAYER</h1>
+			<%= form_tag live_player_picture_path, method: :get do %>
+				<%= text_field_tag :liveplayer, @livePlayer, :required => true  %>
+				<%= submit_tag "SUBMIT", :class => 'button', name: nil %>
+			<% end %>
+		</div>
+	</div>
+</div>

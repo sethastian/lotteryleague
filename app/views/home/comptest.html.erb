@@ -1,14 +1,20 @@
-	<div class="row">
+	<%= link_to "Enter Player", liveplayer_path, class:"live-player-link" %>
+	<% if params[:liveplayer].present? %>
+		<div class="live-player-box">
+			<span class="number"><%= Draft.first.livePlayer %></span><br />
+			<span class="name"><%= Player.where(number: Draft.first.livePlayer).first.name %></span>
+		</div>
+	<% end %>
+	<div class="row" style="margin-top:-60px">
 		<div class="small-6 text-center small-centered columns">
-			<%= image_tag("logo.jpg") %>
-			<h3>- ROUND <%= @draft.round %> -</h3>
+			<%= image_tag("logo.png") %>
+			<h3 style="padding-top:10px;">- ROUND <%= @draft.round %> -</h3>
 			<h1 style="margin-bottom:15px;">BAND <%= @band.number %></h1>
 		</div>
 	</div>
 	<div class="row band-box">
 		<div class="small-8 columns small-centered text-center">
 			
-
 		
 			<%= form_tag home_compatible_path, method: :get do %>
 

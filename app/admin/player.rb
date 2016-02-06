@@ -47,16 +47,20 @@ permit_params :name, :number, :phone, :currentBandName, :band2008, :band2010, :b
 
 index do
     selectable_column
-    id_column
-    column :number
     column :name
+    column "Incompatible Players" do |player|
+      player.related_players.each.map{|u| u.name}
+    end
+    
    	column :instrument
+    column :number
     actions
  end
 
   form do |f|
     f.inputs "Players" do
       f.input :name
+      f.input :related_players, as: :select2_multiple, label: "Incompatible Players"
       f.input :number
       f.input :instrument
       f.input :currentBandName
@@ -66,7 +70,7 @@ index do
       f.input :band2010
       f.input :band2013
       f.input :image, :required => false, :hint => image_tag(f.object.image.url(:thumb))
-      f.input :related_players, as: :select2_multiple, label: "Incompatible Players"
+      
     end
     f.actions
   end

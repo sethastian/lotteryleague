@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get "liveplayer" => 'home#livePlayer'
   get "mj" => "home#mjView"
   get "add_player_to_band" => "home#add_player_to_band"
+  get "commit_trade" => "home#commit_trade"
+  get "calculate_trade" => "home#calculate_trade"
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   

@@ -8,7 +8,7 @@
 		
 			<%= link_to "REQUEST TRADE", trade_path(:player => @player, :band => @band, :compBand => @compBand, :bandRound => @round, :compBandRound => @compBandRound), class:'button' %> <br />	
 
-			<%= link_to "EXECUTE TRADE", execute_trade(@player.to_i, @band.to_i, @compBand.to_i, @round.to_i, @compBandRound.to_i), class:'button' %> <br />	
+			<%= link_to "EXECUTE TRADE", calculate_trade_path(:player => @player.to_i, :band => @band.to_i, :compBand => @compBand.to_i, :bandRound => @round.to_i, :compBandRound => @compBandRound.to_i), class:'button'  %>
 		
 			<%= link_to "<< Back to Draft", livedraft_path, class:'it-link' %>
 		

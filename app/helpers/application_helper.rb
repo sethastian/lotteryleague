@@ -1,6 +1,18 @@
 module ApplicationHelper
 
 	#@currentBand = Draft.first.liveBand
+
+
+	def update_draft_round
+		@draft = Draft.first
+		if (@draft.liveBand.to_i == @draft.numberOfBands)		#at the end of the round, cycle to new round
+  			@newround = (@draft.round.to_i + 1).to_s
+  			@draft.update(liveBand: "1", round: @newround)	
+	  	else
+	  		@draft.update(liveBand: ((@draft.liveBand.to_i)+1).to_s)
+	  	end
+	end
+
 	def execute_trade(player, band, compBand, bandRound, compBandRound)
 	puts "GETS HERE 111"
   	@currentBand = Band.where(number: band).first
@@ -90,6 +102,9 @@ module ApplicationHelper
   				@currentBand.update(player4: @compBandPlayer3)
   				@currentBand.save
   				@compBand.update(player3: player)
+
+  				update_draft_round
+
   				redirect_to livedraft_path and return
   			end
   		else
@@ -158,6 +173,9 @@ module ApplicationHelper
   				@currentBand.save
   				@compBand.update(player4: player)
   				@compBand.save
+
+  				update_draft_round
+
   				redirect_to livedraft_path and return
   			end
   		end
@@ -206,6 +224,9 @@ module ApplicationHelper
   				@currentBand.update(player3: @compBandPlayer2)
   				@currentBand.save
   				@compBand.update(player2: player)
+
+  				update_draft_round
+
   				redirect_to livedraft_path and return
   			end
   		else
@@ -264,6 +285,9 @@ module ApplicationHelper
   				@currentBand.save
   				@compBand.update(player3: player)
   				@compBand.save
+
+  				update_draft_round
+
   				redirect_to livedraft_path and return
   			end
   		end
@@ -312,6 +336,9 @@ module ApplicationHelper
   				@currentBand.save
   				@compBand.update(player2: player)
   				@compBand.save
+
+  				update_draft_round
+
   				redirect_to livedraft_path and return
   			end
   		end

@@ -1,6 +1,9 @@
 class HomeController < InheritedResources::Base
 helper_method :redirect_to
 
+  def calculate_trade
+  end
+
 
   def livePlayerPicture
   	@draft = Draft.first
@@ -9,17 +12,21 @@ helper_method :redirect_to
   	@player = Player.where(number: params[:liveplayer].to_i).first
   end
 
+
   def mjView
   	@draftPlayer = Draft.first.livePlayer
   	gon.watch.liveplayer = @draftPlayer
   end
 
+
   def livePlayer
   	 @livePlayer = Draft.first.livePlayer
   end
 
+
   def livedraft
   end
+
 
   def updatedBand
   	bandNum = Draft.first.liveBand.to_i 
@@ -30,10 +37,12 @@ helper_method :redirect_to
   	end
   end
 
+
   def bands
   	@liveband = Draft.first.liveBand.to_i
   	gon.watch.liveband = @liveband
   end
+
 
   def comptest
   	@draft = Draft.all.first
@@ -168,6 +177,16 @@ helper_method :redirect_to
   				@currentBand.update(player4: @compBandPlayer3)
   				@currentBand.save
   				@compBand.update(player3: player)
+
+  				#Update Draft Liveband and Round
+  				@draft = Draft.first
+  				if (@draft.liveBand.to_i == @draft.numberOfBands)		#at the end of the round, cycle to new round
+			  		@newround = (@draft.round + 1).to_s
+			  		@draft.update(liveBand: "1", round: @newround)	
+			  	else
+			  		@draft.update(liveBand: ((@draft.liveBand.to_i)+1).to_s)
+			  	end
+
   				redirect_to livedraft_path and return
   			end
   		else
@@ -236,6 +255,17 @@ helper_method :redirect_to
   				@currentBand.save
   				@compBand.update(player4: player)
   				@compBand.save
+
+  				#Update Draft Liveband and Round
+  				@draft = Draft.first
+  				if (@draft.liveBand.to_i == @draft.numberOfBands)		#at the end of the round, cycle to new round
+			  		@newround = (@draft.round + 1).to_s
+			  		@draft.update(liveBand: "1", round: @newround)	
+			  	else
+			  		@draft.update(liveBand: ((@draft.liveBand.to_i)+1).to_s)
+			  	end
+
+			  	#FINAL ACTION
   				redirect_to livedraft_path and return
   			end
   		end
@@ -284,6 +314,16 @@ helper_method :redirect_to
   				@currentBand.update(player3: @compBandPlayer3)
   				@currentBand.save
   				@compBand.update(player2: player)
+
+  				#Update Draft Liveband and Round
+  				@draft = Draft.first
+  				if (@draft.liveBand.to_i == @draft.numberOfBands)		#at the end of the round, cycle to new round
+			  		@newround = (@draft.round + 1).to_s
+			  		@draft.update(liveBand: "1", round: @newround)	
+			  	else
+			  		@draft.update(liveBand: ((@draft.liveBand.to_i)+1).to_s)
+			  	end
+
   				redirect_to livedraft_path and return
   			end
   		else
@@ -342,6 +382,16 @@ helper_method :redirect_to
   				@currentBand.save
   				@compBand.update(player3: player)
   				@compBand.save
+
+  				#Update Draft Liveband and Round
+  				@draft = Draft.first
+  				if (@draft.liveBand.to_i == @draft.numberOfBands)		#at the end of the round, cycle to new round
+			  		@newround = (@draft.round + 1).to_s
+			  		@draft.update(liveBand: "1", round: @newround)	
+			  	else
+			  		@draft.update(liveBand: ((@draft.liveBand.to_i)+1).to_s)
+			  	end
+
   				redirect_to livedraft_path and return
   			end
   		end
@@ -390,6 +440,16 @@ helper_method :redirect_to
   				@currentBand.save
   				@compBand.update(player2: player)
   				@compBand.save
+
+  				#Update Draft Liveband and Round
+  				@draft = Draft.first
+  				if (@draft.liveBand.to_i == @draft.numberOfBands)		#at the end of the round, cycle to new round
+			  		@newround = (@draft.round + 1).to_s
+			  		@draft.update(liveBand: "1", round: @newround)	
+			  	else
+			  		@draft.update(liveBand: ((@draft.liveBand.to_i)+1).to_s)
+			  	end
+
   				redirect_to livedraft_path and return
   			end
   		end

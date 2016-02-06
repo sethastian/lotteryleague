@@ -1,0 +1,58 @@
+<div class="row">
+	<div class="small-6 columns">
+		<div class="row">
+			<h1> BAND <%= @band1.number %>:</h1>
+			<div class="small-12 columns">
+				<% if (!@b1Player1.nil?) %>
+					<h3><%= @b1Player1.name %></h3>
+				<% end %>
+			</div>
+			<div class="small-12 columns">
+				<% if (!@b1Player2.nil?) %>
+					<h3><%= @b1Player2.name %></h3>
+				<% end %>
+			</div>
+			<div class="small-12 columns">
+				<% if (!@b1Player3.nil?) %>
+					<h3><%= @b1Player3.name %></h3>
+				<% end %>
+			</div>
+			<div class="small-12 columns">
+				<% if (!@b1Player4.nil?) %>
+					<h3><%= @b1Player4.name %></h3>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<div class="small-6 columns">
+
+		<div class="row">
+			<h1> BAND <%= @band2.number %>:</h1>
+			<div class="small-12 columns">
+				<% if (!@b2Player1.nil?) %>
+					<h3><%= @b2Player1.name %></h3>
+				<% end %>
+			</div>
+			<div class="small-12 columns">
+				<% if (!@b2Player2.nil?) %>
+					<h3><%= @b2Player2.name %></h3>
+				<% end %>
+			</div>
+			<div class="small-12 columns">
+				<% if (!@b2Player3.nil?) %>
+					<h3><%= @b2Player3.name %></h3>
+				<% end %>
+			</div>
+			<div class="small-12 columns">
+				<% if (!@b2Player4.nil?) %>
+					<h3><%= @b2Player4.name %></h3>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="small-12 columns text-center" style="margin-top:20px">
+		<%= link_to "Pick New Player", liveplayer_path, class:'button' %>
+	</div>
+</div>

@@ -1,9 +1,13 @@
 <div id="livePlayerPicture">
 	<div class="row">
 		<div class="small-8 columns small-centered text-center">
+			<%= link_to "Test Compatibility", livedraft_path(:liveplayer => @player.number), class: 'button tiny' %>
 			<h1><%= @player.name %></h1>
-			<p><%= image_tag(@player.image.url) %></p>
-			<%= link_to "Test Compatibility", livedraft_path(:liveplayer => @player.number), class: 'button' %>
+			<%= puts @player.image.url %>
+			<%= puts "AAAAAAAAAAAAAAAAAA" %>
+			<%= puts @player %>
+			<p><%= image_tag(@player.image.url(:large)) %></p>
+			
 		</div>
 	</div>
 </div>

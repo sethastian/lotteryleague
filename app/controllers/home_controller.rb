@@ -12,10 +12,63 @@ helper_method :redirect_to
   	@player = Player.where(number: params[:liveplayer].to_i).first
   end
 
+  def tradedbands
+  	@band1 = Band.where(number: params[:band1].to_i).first
+  	@band2 = Band.where(number: params[:band2].to_i).first
+  	if (!@band1.player1.blank?)
+  		@b1Player1 = Player.where(number: @band1.player1.to_i).first
+  	end
+  	if (!@band1.player2.blank?)
+  		@b1Player2 = Player.where(number: @band1.player2.to_i).first
+  	end
+  	if (!@band1.player3.blank?)
+  		@b1Player3 = Player.where(number: @band1.player3.to_i).first
+  	end
+  	if (!@band1.player4.blank?)
+  		@b1Player4 = Player.where(number: @band1.player4.to_i).first
+  	end
+  	if (!@band2.player1.blank?)
+  		@b2Player1 = Player.where(number: @band2.player1.to_i).first
+  	end
+  	if (!@band2.player2.blank?)
+  		@b2Player2 = Player.where(number: @band2.player2.to_i).first
+  	end
+  	if (!@band2.player3.blank?)
+  		@b2Player3 = Player.where(number: @band2.player3.to_i).first
+  	end
+  	if (!@band2.player4.blank?)
+  		@b2Player4 = Player.where(number: @band2.player4.to_i).first
+  	end
+  end
 
   def mjView
-  	@draftPlayer = Draft.first.livePlayer
+  	@draftPlayer = Player.where(number: Draft.first.livePlayer.to_i).first
+  	@draftName = @draftPlayer.name
+  	@draftBand = @draftPlayer.currentBandName
+  	@draftInstrument = @draftPlayer.instrument
+
+  	@band2008 = @draftPlayer.band2008
+  	@band2010 = @draftPlayer.band2010
+  	@band2013 = @draftPlayer.band2013
+  	@description = @draftPlayer.description
+  	gon.watch.draftName = @draftName
+  	gon.watch.draftBand = @draftBand
+  	gon.watch.band2008 = @band2008
+  	gon.watch.band2010 = @band2010
+  	gon.watch.band2013 = @band2013
+  	gon.watch.description = @description
+  	gon.watch.draftInstrument = @draftInstrument
   	gon.watch.liveplayer = @draftPlayer
+  end
+
+  def livetrade
+  	@newPlayer = Player.where(number: params[:newPlayer].to_i).first.name
+  	@previousBand = params[:previousBand]
+  	@currentBand = params[:currentBand]
+  	@currentPlayer = Player.where(number: params[:player].to_i).first.name
+  	gon.watch.newplayer = @newPlayer
+  	gon.watch.previousband = @previousBand
+  	gon.watch.currentplayer = @currentPlayer
   end
 
 
@@ -469,38 +522,47 @@ helper_method :redirect_to
   	if (!params[:player4].blank?)
 		@player4.related_players.each do |p|
 			if ( (p.number.to_s == params[:player3].to_s) || (p.number == params[:player2].to_s) || (p.number == params[:player1].to_s) )
+				puts "1"
 				redirect_to incompatible_player_path(player: params[:player4], :band => params[:band], :round => params[:round]) and return
 			end
+
 		end
 		@player3.related_players.each do |p|
 			if (p.number.to_s == params[:player4].to_s) 
-				redirect_to incompatible_player_path(player: params[:player4], :band => params[:band], :round => params[:round]) and return
+			
+				redirect_to incompatible_player_path(player: params[:player4], :band => params[:band], :round => params[:round]) and return				
 			end
 		end
 		@player2.related_players.each do |p|
 			if (p.number.to_s == params[:player4].to_s) 
+	
 				redirect_to incompatible_player_path(player: params[:player4], :band => params[:band], :round => params[:round]) and return
 			end
 		end
 		@player1.related_players.each do |p|
 			if (p.number.to_s == params[:player4].to_s) 
+			
 				redirect_to incompatible_player_path(player: params[:player4], :band => params[:band], :round => params[:round]) and return
 			end
 		end
 		redirect_to compatible_player_path(player: params[:player4], :band => params[:band], :round => params[:round]) and return
 	elsif(!params[:player3].blank?)
 		@player3.related_players.each do |p|
-			if ( (p.number.to_s == params[:player2].to_s) || (p.number.to_s == params[:player1]).to_s )
+
+			if ( (p.number.to_s == params[:player2].to_s) || (p.number.to_s == params[:player1].to_s) )
+				puts p.number.to_s
 				redirect_to incompatible_player_path(player: params[:player3], :band => params[:band], :round => params[:round]) and return
 			end
 		end
 		@player2.related_players.each do |p|
 			if (p.number.to_s == params[:player3].to_s) 
+		
 				redirect_to incompatible_player_path(player: params[:player3], :band => params[:band], :round => params[:round]) and return
 			end
 		end
 		@player1.related_players.each do |p|
 			if (p.number.to_s == params[:player3].to_s) 
+			
 				redirect_to incompatible_player_path(player: params[:player3], :band => params[:band], :round => params[:round]) and return
 			end
 		end
@@ -545,5 +607,88 @@ helper_method :redirect_to
 
 
   end
+
+def compatiblesingleplayer
+end
+
+def incompatiblesingleplayer
+end
+	
+
+def compatiblesingle
+  	@player1 = Player.find_by_number(params[:player1])
+  	@player2 = Player.find_by_number(params[:player2])
+  	@player3 = Player.find_by_number(params[:player3])
+  	@player4 = Player.find_by_number(params[:player4])
+
+  	if (!params[:player4].blank?)
+		@player4.related_players.each do |p|
+			if ( (p.number.to_s == params[:player3].to_s) || (p.number == params[:player2].to_s) || (p.number == params[:player1].to_s) )
+				puts "1"
+				redirect_to incompatiblesingleplayer_path(player: params[:player4], :band => params[:band], :round => params[:round]) and return
+			end
+
+		end
+		@player3.related_players.each do |p|
+			if (p.number.to_s == params[:player4].to_s) 
+			
+				redirect_to incompatiblesingleplayer_path(player: params[:player4], :band => params[:band], :round => params[:round]) and return				
+			end
+		end
+		@player2.related_players.each do |p|
+			if (p.number.to_s == params[:player4].to_s) 
+	
+				redirect_to incompatiblesingleplayer_path(player: params[:player4], :band => params[:band], :round => params[:round]) and return
+			end
+		end
+		@player1.related_players.each do |p|
+			if (p.number.to_s == params[:player4].to_s) 
+			
+				redirect_to incompatiblesingleplayer_path(player: params[:player4], :band => params[:band], :round => params[:round]) and return
+			end
+		end
+		redirect_to compatiblesingleplayer_path(player: params[:player4], :band => params[:band], :round => params[:round]) and return
+	elsif(!params[:player3].blank?)
+		@player3.related_players.each do |p|
+
+			if ( (p.number.to_s == params[:player2].to_s) || (p.number.to_s == params[:player1].to_s) )
+				puts p.number.to_s
+				redirect_to incompatiblesingleplayer_path(player: params[:player3], :band => params[:band], :round => params[:round]) and return
+			end
+		end
+		@player2.related_players.each do |p|
+			if (p.number.to_s == params[:player3].to_s) 
+		
+				redirect_to incompatiblesingleplayer_path(player: params[:player3], :band => params[:band], :round => params[:round]) and return
+			end
+		end
+		@player1.related_players.each do |p|
+			if (p.number.to_s == params[:player3].to_s) 
+			
+				redirect_to incompatiblesingle_player_path(player: params[:player3], :band => params[:band], :round => params[:round]) and return
+			end
+		end
+		redirect_to compatiblesingleplayer_path(:player => params[:player3], :band => params[:band], :round => params[:round]) and return	
+	elsif(!params[:player2].blank?)
+		@player2.related_players.each do |p|
+			if ( (p.number.to_s == params[:player1].to_s) )
+				redirect_to incompatiblesingleplayer_path(player: params[:player2], :band => params[:band], :round => params[:round]) and return
+			end
+		end
+		@player1.related_players.each do |p|
+			if (p.number.to_s == params[:player2].to_s) 
+				redirect_to incompatiblesingleplayer_path(player: params[:player2], :band => params[:band], :round => params[:round]) and return
+			end
+		end
+		redirect_to compatiblesingleplayer_path(:player => params[:player2], :band => params[:band], :round => params[:round]) and return
+	else
+		redirect_to compatiblesingleplayer_path(:player => params[:player1], :band => params[:band], :round => params[:round]) and return
+	end
+
+  end
+
+
+
+
 
 end

@@ -1,0 +1,26 @@
+<div class="clockwork">
+<h1>
+
+<div class="row" >
+	<div class="small-12 columns text-center" style="margin-top:200px;">
+		<h1 id="trade" style="display:none; background:#000;"><%= @currentPlayer %> has been traded with <%= @newPlayer %> in Band: <%= @previousBand %></h1>
+		<a class="button">Reveal Trade</a>
+	</div>
+</div>
+<div class="row">
+	<div class="small-8 small-centered columns text-center">
+
+		<%= link_to "Show new bands", tradedbands_path(:band1 => @previousBand, :band2 => @currentBand), class:'button tiny round' %>
+	</div>
+</div>
+
+<script>
+$(document).ready(function(){
+	$('.button').click(function(){
+		$('#trade').toggle();
+		$(this).toggle();
+	});
+});
+</script>
+
+</div>

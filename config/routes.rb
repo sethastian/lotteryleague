@@ -17,6 +17,11 @@ Rails.application.routes.draw do
   get "add_player_to_band" => "home#add_player_to_band"
   get "commit_trade" => "home#commit_trade"
   get "calculate_trade" => "home#calculate_trade"
+  get "livetrade" => "home#livetrade"
+  get "tradedbands" => "home#tradedbands"
+  get "home/compatiblesingle"=>"home#compatiblesingle"
+  get "compatiblesingleplayer"=>"home#compatiblesingleplayer"
+  get "incompatiblesingleplayer"=>"home#incompatiblesingleplayer"
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   

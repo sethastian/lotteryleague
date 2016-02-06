@@ -1,17 +1,77 @@
-<div id="mjView">
-	<%= @draftPlayer %>
+<div class="row">
+	<div class="small-12 columns">
+		<div id="mjView">
+			<h1>Name: <span id="name"></span></h1>
+			<h1>Band: <span id="band"></span></h1>
+			<h1>Instrument: <span id="instrument"></span></h1>
+			<h1>LL 2008: <span id="2008"></span></h1>
+			<h1>LL 2010: <span id="2010"></span></h1>
+			<h1>LL 2013: <span id="2013"></span></h1>
+			<h3>Notes: <span style="color:#fff" id="description"></span></h6>
+		</div>
+	</div>
 </div>
 <script>
 $( document ).ready(function() {
 		var livePlayer;
 
-	showLivePlayer = function(livePlayer) {
-	  return $('#mjView').text(livePlayer);
-
+	showName = function(draftName) {
+	   $('#name').text(draftName);
 	};
 
-	gon.watch('liveplayer', {
+	showBand = function(draftBand) {
+	   $('#band').text(draftBand);
+	};
+
+
+	show2008 = function(band2008) {
+	   $('#2008').text(band2008);
+	};
+
+	show2010 = function(band2010) {
+	   $('#2010').text(band2010);
+	};
+
+	show2013 = function(band2013) {
+	   $('#2013').text(band2013);
+	};
+
+	description = function(description) {
+	   $('#description').text(description);
+	};
+
+	showInstrument = function(draftInstrument) {
+	   $('#instrument').text(draftInstrument);
+	};
+
+
+
+	gon.watch('draftName', {
 	  interval: 1000
-	}, showLivePlayer);
+	}, showName);
+
+	gon.watch('draftBand', {
+	  interval: 1000
+	}, showBand);
+
+	gon.watch('band2008', {
+	  interval: 1000
+	}, show2008);
+
+	gon.watch('band2010', {
+	  interval: 1000
+	}, show2010);
+
+	gon.watch('band2013', {
+	  interval: 1000
+	}, show2013);
+
+	gon.watch('description', {
+	  interval: 1000
+	}, description);
+
+	gon.watch('draftInstrument', {
+	  interval: 1000
+	}, showInstrument);
 });
 </script>

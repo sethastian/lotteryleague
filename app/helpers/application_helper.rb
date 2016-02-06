@@ -104,8 +104,9 @@ module ApplicationHelper
   				@compBand.update(player3: player)
 
   				update_draft_round
+  				redirect_to livetrade_path(:previousBand => @compBand.number, :newPlayer => @compBandPlayer3, :player => player, :currentBand => @currentBand.number ) and return
 
-  				redirect_to livedraft_path and return
+  				#redirect_to livedraft_path and return
   			end
   		else
   			@comp1 = 0
@@ -175,8 +176,9 @@ module ApplicationHelper
   				@compBand.save
 
   				update_draft_round
+  				redirect_to livetrade_path(:previousBand => @compBand.number, :newPlayer => @compBandPlayer4, :player => player, :currentBand => @currentBand.number  ) and return
 
-  				redirect_to livedraft_path and return
+  				#redirect_to livedraft_path and return
   			end
   		end
   	elsif (bandRound == 3)
@@ -227,7 +229,10 @@ module ApplicationHelper
 
   				update_draft_round
 
-  				redirect_to livedraft_path and return
+  				redirect_to livetrade_path(:previousBand => @compBand.number, :newPlayer => @compBandPlayer2, :player => player, :currentBand => @currentBand.number  ) and return
+
+
+  				#redirect_to livedraft_path and return
   			end
   		else
   			@comp1 = 0
@@ -288,7 +293,10 @@ module ApplicationHelper
 
   				update_draft_round
 
-  				redirect_to livedraft_path and return
+  				redirect_to livetrade_path(:previousBand => @compBand.number, :newPlayer => @compBandPlayer3, :player => player, :currentBand => @currentBand.number  ) and return
+
+
+  				#redirect_to livedraft_path and return
   			end
   		end
   	elsif (bandRound == 2)
@@ -339,7 +347,9 @@ module ApplicationHelper
 
   				update_draft_round
 
-  				redirect_to livedraft_path and return
+  				redirect_to livetrade_path(:previousBand => @compBand.number, :newPlayer => @compBandPlayer2, :player => player, :currentBand => @currentBand.number  ) and return
+
+  				#redirect_to livedraft_path and return
   			end
   		end
   	else

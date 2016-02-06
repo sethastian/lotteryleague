@@ -1,0 +1,60 @@
+
+
+	<div class="row band-box">
+		<div class="small-8 columns small-centered text-center">
+			
+		
+			<%= form_tag compatiblesingle_path, method: :get do %>
+
+
+				      	<div class="row">
+				        	<div class="small-4 columns">
+				          		<label for="right-label" class="right inline">PLAYER 1:</label>
+				        	</div>
+				        	<div class="small-5 left columns">
+		
+				          			<%= text_field_tag :player1, @band.player1 %>
+
+				        	</div>
+				      	</div>
+				      	<div class="row small-margin">
+				        	<div class="small-4 columns">
+				          		<label for="right-label" class="right inline">PLAYER 2:</label>
+				        	</div>
+				        	<div class="small-5 left columns">
+				        	
+				          			<%= text_field_tag :player2, @band.player2 %>
+				       
+				        	</div>
+				      	</div>
+				      	<div class="row small-margin">
+				        	<div class="small-4 columns">
+				          		<label for="right-label" class="right inline">PLAYER 3:</label>
+				        	</div>
+				        	<div class="small-5 left columns">
+				          	
+				          			<%= text_field_tag :player3, @band.player3 %>
+				          	
+				        	</div>
+				      	</div>
+				      	<div class="row small-margin">
+				        	<div class="small-4 columns">
+				          		<label for="right-label" class="right inline">PLAYER 4:</label>
+				        	</div>
+				        	<div class="small-5 left columns">
+			
+				          			<%= text_field_tag :player4, @band.player4 %>
+
+				        	</div>
+				      	</div>
+				      	<div class="row small-margin">
+				        	<div class="small-12 columns text-center">
+				          
+								<%= submit_tag "Compatibile?", :class => 'button', name: nil %>	
+				        	</div>
+				      	</div>		    
+
+
+		  	<% end %>
+		</div>
+	</div>

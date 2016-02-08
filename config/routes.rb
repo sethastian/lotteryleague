@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :players
   resources :incompatibles
   resources :drafts
-  resources :bands
+  resources :bands 
   resources :mates
   get "incompatible_player" => 'home#incompatiblePlayer'
   get "compatible_player" => 'home#compatiblePlayer'
@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get "home/compatiblesingle"=>"home#compatiblesingle"
   get "compatiblesingleplayer"=>"home#compatiblesingleplayer"
   get "incompatiblesingleplayer"=>"home#incompatiblesingleplayer"
+  get '/bands/:number', to: 'bands#show'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   

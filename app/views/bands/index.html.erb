@@ -1,29 +1,64 @@
-<p id="notice"><%= notice %></p>
+<style>
+.header.panel {
+  margin: 3rem auto;
+  border: 2px solid #444;
+  background: #fff; }
+  .header.panel p {
+    padding: 1rem 0.0rem 2rem 0.4rem;
+    margin-top: -1.25rem;
+    font-weight:300;
+    text-transform: uppercase;
+    font-size:12px; }
+    .header.panel p span {
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display:inline-block;
+      margin-left:4px;
+      font-size: 115%;
+      font-weight: bold; }
+  .header.panel .sign {
+    background: #fff;
+    width: 150px;
+    height: 2.4rem;
+    border: 2px solid #444;
+    position: relative;
+    top: -2.5rem;
+    margin: auto; }
+    .header.panel .sign h1 {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #666;
+      font-size: 70%;
+      text-align: center;
+      line-height: 2rem; }
 
-<h1>Listing Bands</h1>
+</style>
 
-<table>
-  <thead>
-    <tr>
-      <th>Number</th>
-      <th>Title</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="row">
+  <div class="small-12 columns text-center">
+     <%= image_tag("band-lineup.png") %>
+  </div>
+</div>
+<div class="row">
+  <% Band.all.each do |band| %>
+      <% @player1 = Player.where(number: band.player1.to_i).first %>
+      <% @player2 = Player.where(number: band.player2.to_i).first %>
+      <% @player3 = Player.where(number: band.player3.to_i).first %>
+      <% @player4 = Player.where(number: band.player4.to_i).first %>
+      <div class="small-12 medium-6 large-4 columns left">
 
-  <tbody>
-    <% @bands.each do |band| %>
-      <tr>
-        <td><%= band.number %></td>
-        <td><%= band.title %></td>
-        <td><%= link_to 'Show', band %></td>
-        <td><%= link_to 'Edit', edit_band_path(band) %></td>
-        <td><%= link_to 'Destroy', band, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <div class="header panel">
+          <div class="sign">
+            <h1>Band <%= band.number %></h1>
+          </div>
+          <p>Player 1:  <span><%= @player1.name unless @player1.nil?%></span></p>
+          <p>Player 2:  <span><%= @player2.name unless @player2.nil?%></span></p>
+          <p>Player 3:  <span><%= @player3.name unless @player3.nil?%></span></p>
+          <p>Player 4:  <span><%= @player4.name unless @player4.nil?%></span></p>
+        </div>
+      
+      </div>
+  <% end %>
+</div>
 
-<br>
 
-<%= link_to 'New Band', new_band_path %>

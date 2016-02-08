@@ -1,8 +1,9 @@
 class BandsController < InheritedResources::Base
 
-	def show
-		@band = Band.find_by_number(params[:id])
-	end
+	#def show
+	#	@band = Band.find_by_number(params[:id])
+	#end
+  
   private
 
     def band_params

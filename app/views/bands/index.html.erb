@@ -40,7 +40,7 @@
   </div>
 </div>
 <div class="row">
-  <% Band.all.each do |band| %>
+  <% Band.all.order('number asc').each do |band| %>
       <% @player1 = Player.where(number: band.player1.to_i).first %>
       <% @player2 = Player.where(number: band.player2.to_i).first %>
       <% @player3 = Player.where(number: band.player3.to_i).first %>

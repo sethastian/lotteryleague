@@ -1,17 +1,95 @@
+<style>
+  body{
+    overflow:hidden;
+  }
+</style>
 
-
-
-<div class="incompatible-screen">
+<% special_count = Dir["app/assets/images/incompatible/**/*"].length %>
+<div class="incompatible-screen" style='background-image: url(<%= "assets/incompatible/#{rand(special_count)}.jpg" %>)'>
 	<div class="row">
-		<div class="small-12 columns text-center" style="padding-top:100px;">
+		<div class="small-12 columns text-center" style="padding-top:40px;">
 			<div class="incompatible-text">INCOMPATIBLE</div>
 		
 			<!-- link_to "REQUEST TRADE", trade_path(:player => @player, :band => @band, :compBand => @compBand, :bandRound => @round, :compBandRound => @compBandRound), class:'button' -->
 
-			<%= link_to "EXECUTE TRADE", calculate_trade_path(:player => @player.to_i, :band => @band.to_i, :compBand => @compBand.to_i, :bandRound => @round.to_i, :compBandRound => @compBandRound.to_i), class:'button'  %> <br />
+      <div class="row">
+        <div class="small-6 columns text-center">
+          <% band = Band.find_by_number(@band) %>
+          <h3 style="color:#fff; text-align:left;">Band <%= @band %></h3>
+          <%= render partial: "bands/band", locals: {band: band} %>
+        </div>
+
+        <div class="small-2 columns big-x">
+          <img width="200" class="spin-animation mover" style="margin-top:66px" src="/assets/incompatible-x.png" />
+        </div>
+
+        <div class="small-4 columns">
+          <% player = Player.find_by_number(@player) %>
+          <h4 style="color:#fff"><%= player.name %></h4>
+          <p><img width="140" src='<%= "#{player.front_image}" %>'></p>
+        </div>
+      </div>
+
+			<%= link_to "BEGIN TRADE", commit_trade_countdown_path(:player_number => @player.to_i, :previous_band => @band.to_i, :current_band => @band.to_i), class:'button'  %> <br />
 		
 			<%= link_to "<< Back to Draft", livedraft_path, class:'it-link' %>
 		
 		</div>
 	</div>
 </div>
+
+<script>
+
+
+    function randomIntFromInterval(min,max) // min and max included
+    {
+        return Math.floor(Math.random()*(max-min+1)+min);
+    }
+
+    $(document).on('keydown', function(e) {
+        // e stands for "event" - the event is the keypress
+        // e.key means the k
+        switch (e.key) {
+
+
+
+            // left arrow pressed
+            case "ArrowLeft":
+                var clone = $(".mover").clone();
+
+                var plusOrMinus = Math.random() < 0.5 ? -1 : 1;
+
+                var top = randomIntFromInterval(1, 1000);
+                var top2 = randomIntFromInterval(1, 1000);
+                var left = plusOrMinus == 1 ? "left" : "right"
+
+                var end_point = left < 0 ? 1300 : -1300;
+
+                clone.css("position", "absolute");
+                clone.css(left, "-200px");
+                clone.css("top", top + "px");
+                clone.appendTo(".incompatible-screen");
+
+                if (left == "left") {
+                    clone.animate({
+                        left: "+=1400px",
+                        top: top2 + "px"
+                    }, 'slow');
+                } else {
+                    clone.animate({
+                        right: "+=1400px",
+                        top: top2 + "px"
+                    }, 'slow');
+                }
+
+                setTimeout(function(){
+                    clone.fadeOut();
+                    clone.remove();
+                }, 800);
+
+
+
+                break;
+        }
+    });
+</script>

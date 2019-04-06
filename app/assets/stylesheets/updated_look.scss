@@ -1,0 +1,114 @@
+.main-background{
+  background-size:contain;
+  margin-top:60px;
+  background-position-x: center;
+  background-repeat:no-repeat;
+  width:100%;
+  height:100%;
+  max-height:800px;
+  display:block;
+  background-image:url('/assets/main-bg.jpg');
+}
+
+.player_number_selector{
+  background: #440e62;
+  color: #fff394;
+  width: 350px;
+  border-radius: 18px;
+  margin-bottom: 14px;
+  height: 75px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 36px;
+  font-weight:300;
+  &.active-player{
+    background:#781ea9;
+  }
+}
+
+
+
+.input-box{
+  border: 2px solid #fff;
+  border-radius: 25px;
+  height: 75px;
+  width: 100px;
+  margin-left: 47px;
+  input[type="text"], input[type=text]:hover{
+    border-bottom: 0;
+    text-align: Center;
+    line-height: 62px;
+    height: 51px;
+    font-size: 34px;
+    font-weight: 700;
+    color: #fff;
+    width: 80px;
+    margin-left: -8px;
+    margin-top: 11px;
+  }
+}
+
+form input[type=submit].compatible-button{
+  background-size: contain;
+  width: 200px;
+  height: 200px;
+  color: transparent;
+  background-color: #000;
+  background-image: url(/assets/compatible-button.png);
+  border: none;
+  display: block;
+  position: absolute;
+  top: 119px;
+}
+
+.band-layout-container{
+  position: absolute;
+  left:0; right:0; margin: 0 auto;
+  top:25%;
+}
+
+.band-overall-number{
+  font-size:54px;
+  color:#fff;
+  margin-bottom:30px;
+}
+
+.band-layout{
+  .band-member{
+    background: #440e62;
+    color: #fff394;
+    width: 195px;
+    border-radius: 18px;
+    margin: 10px auto;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 18px;
+    font-weight: 300;
+  }
+}
+
+.band-picture{
+  max-width:200px;
+  margin:0 auto;
+}
+
+@media (max-width:1450px){
+  .band-picture{
+    max-width:160px;
+  }
+}
+
+h1, h2, h3, h4, h5, h6{
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+}
+
+.spin-animation {
+  margin:-60px 0 0 -60px;
+  -webkit-animation:spin 4s linear infinite;
+  -moz-animation:spin 4s linear infinite;
+  animation:spin 4s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }

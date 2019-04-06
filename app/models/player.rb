@@ -21,4 +21,20 @@ has_and_belongs_to_many :related_players,
 accepts_nested_attributes_for :related_players
 
 
+	def front_image
+		return "" if !self.name || self.name.blank?
+		names = self.name.split(" ")
+		parsed_name = names[0].downcase + "_" + names[1].downcase
+
+		"/assets/player_fronts/#{parsed_name}.png"
+	end
+
+	def back_image
+		return "" if !self.name || self.name.blank?
+		names = self.name.split(" ")
+		parsed_name = names[0].downcase + "_" + names[1].downcase
+
+		"/assets/player_backs/#{parsed_name}.png"
+	end
+
 end

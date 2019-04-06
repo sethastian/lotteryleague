@@ -1,0 +1,64 @@
+<style>
+  h4{
+    color:#fff;
+  }
+</style>
+
+<% special_count = Dir["app/assets/images/#{@compatible}/**/*"].length %>
+
+<div class="<%= @compatible %>-screen" style='background-image: url(<%= "assets/#{@compatible}/#{rand(special_count)}.jpg" %>)'>>
+  <div class="row">
+    <div class="small-12 columns text-center" style="padding-top:30px;">
+      <div class="incompatible-text"><%= @compatible.upcase %></div>
+      <img src="/assets/electro.gif" style="width:100px; position:absolute; margin:0 auto; right:0; left:0; top:300px;">
+
+      <% if @compatible == "trade" %>
+        <div class="row">
+          <div class="small-6 columns text-center" style="margin-top:30px;">
+            <%= render partial: "bands/band", locals: {band: @previous_band} %>
+          </div>
+
+          <div class="small-6 columns" style="margin-top:-30px;">
+            <h4><%= @player.name %></h4>
+            <p><img width="200" src='<%= "#{@player.front_image}" %>'></p>
+          </div>
+        </div>
+
+        <%= link_to "DOES THIS TRADE WORK?", commit_trade_countdown_path(:player_number => @player.number.to_i, :previous_band => @previous_band.number.to_i, :current_band => @current_band.number.to_i, :check_compatibility => true), class:'button'  %> <br />
+      <% end %>
+
+      <% if @compatible == "compatible" %>
+        <div class="row">
+          <div class="small-6 columns" style="margin-top:30px;">
+            <%= render partial: "bands/band", locals: {band: @previous_band} %>
+          </div>
+
+          <div class="small-6 columns" style="margin-top:-30px;">
+            <h4><%= @player.name %></h4>
+            <p><img width="200" src='<%= "#{@player.front_image}" %>'></p>
+          </div>
+        </div>
+
+        <%= link_to "COMMIT TRADE", old_band_new_band_path(:player_number => @player.number.to_i, :previous_band => @previous_band.number.to_i, :previous_band_player => @previous_band_player, :current_band => @current_band.number.to_i), class:'button'  %> <br />
+      <% end %>
+
+      <% if @compatible == "incompatible" %>
+        <div class="row">
+          <div class="small-6 columns" style="margin-top:30px;">
+            <%= render partial: "bands/band", locals: {band: @previous_band} %>
+          </div>
+
+          <div class="small-6 columns" style="margin-top:-30px;">
+            <h4><%= @player.name %></h4>
+            <p><img width="200" src='<%= "#{@player.front_image}" %>'></p>
+          </div>
+        </div>
+
+        <%= link_to "CHECK THE NEXT BAND", commit_trade_countdown_path(:player_number => @player.number.to_i, :previous_band => @previous_band.number.to_i, :current_band => @current_band.number.to_i), class:'button'  %> <br />
+      <% end %>
+
+      <%= link_to "<< Back to Draft", livedraft_path, class:'it-link' %>
+
+    </div>
+  </div>
+</div>

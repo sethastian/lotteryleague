@@ -1,14 +1,12 @@
 ActiveAdmin.register Player do
 
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
+  i = 1
+
 active_admin_importable do |model, hash|
 
     #### IMPORT PLAYERS
     # We need to run import twice. once to import players. once to import related players
     # Make first column 'import_related' to import related
-
     first = hash[:first].strip
     last = hash[:last].strip
     current_player_name = "#{first} #{last}"
@@ -23,6 +21,9 @@ active_admin_importable do |model, hash|
         related_player_obj = Player.find_by_name(name)
 
         if !related_player_obj
+          open('notfound.txt', 'a') { |f|
+            f.puts "#{name}   "
+          }
           Rails.logger.warn("Couldnt find #{name}")
         else
           unless related_player_obj.name == current_player_name
@@ -33,7 +34,8 @@ active_admin_importable do |model, hash|
 
     else
       if !hash[:first].blank?
-        player = model.create!(:name => current_player_name, :email => hash[:email])
+        player = model.create!(:name => current_player_name, :email => hash[:email], :number => hash[:number])
+        i+=1
       end
     end  
 

@@ -23,7 +23,14 @@ Rails.application.routes.draw do
   get "compatiblesingleplayer"=>"home#compatiblesingleplayer"
   get "incompatiblesingleplayer"=>"home#incompatiblesingleplayer"
   get '/bands/:number', to: 'bands#show'
+  get 'commit_trade_countdown', to: 'home#commit_trade_countdown'
+  get 'old_band_new_band', to: 'home#old_band_new_band'
+  root to: "home#comptest"
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
+
+
+  get 'image-test', to: "home#z_image_test"
   
 end

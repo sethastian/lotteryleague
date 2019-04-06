@@ -1,10 +1,27 @@
-<div class="compatible-screen">
+<% special_count = Dir["app/assets/images/compatible/**/*"].length %>
+
+<div class="compatible-screen" style='background-image: url(<%= "assets/compatible/#{rand(special_count)}.jpg" %>)'>
 	<div class="row">
-		<div class="small-12 columns text-center" style="padding-top:100px;">
+		<div class="small-12 columns text-center" style="padding-top:50px;">
 			<div class="compatible-text">COMPATIBLE</div>
 			
 			<% @livePlayer = Player.where(number: params[:player].to_i).first %>
 
+      <div class="row">
+        <div class="small-6 columns text-center">
+          <h3 style="color:#fff; text-align:left;">Band <%= @band.number %></h3>
+          <%= render partial: "bands/band", locals: {band: @band} %>
+        </div>
+
+        <div class="small-2 columns">
+          <img style="margin-top:66px" src="/assets/left-arrow-red.png" />
+        </div>
+
+        <div class="small-4 columns">
+          <h4 style="color:#fff"><%= @livePlayer.name %></h4>
+          <p><img width="140" src='<%= "#{@livePlayer.front_image}" %>'></p>
+        </div>
+      </div>
 
 			<%= link_to raw("Add <strong>#{@livePlayer.name}</strong> to <strong>Band #{@band.number}</strong>"), add_player_to_band_path(player: params[:player], round: params[:round], band: params[:band]), class:'button' %> <br />
 			<%= link_to "<< Back To Draft", livedraft_path, style:'color:#fff' %>

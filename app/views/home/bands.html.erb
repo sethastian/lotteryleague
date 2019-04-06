@@ -1,163 +1,115 @@
+<div class="main-background" style="margin-top:0;">
+
+  <nav class="nav-fillpath">
+    <a class="prev left-control">
+      <span class="icon-wrap"></span>
+      <h3 style="width:100px">
+        <strong>BAND </strong><span class="bandNumPrev"><%= Draft.first.liveBand.to_i - 1 %></span></h3>
+    </a>
+    <a class="next right-control">
+      <span class="icon-wrap"></span>
+      <h3 style="width:100px">
+        <strong>BAND </strong><span class="bandNumNext"><%= Draft.first.liveBand.to_i + 1 %></span></h3>
+    </a>
+  </nav>
 
 
-<nav class="nav-fillpath">
-	<a class="prev left-control">
-		<span class="icon-wrap"></span>
-		<h3 style="width:100px"><strong>BAND </strong><span class="bandNumPrev"><%= Draft.first.liveBand.to_i  - 1 %></span></h3>
-	</a>
-	<a class="next right-control">
-		<span class="icon-wrap"></span>
-		<h3 style="width:100px"><strong>BAND </strong><span class="bandNumNext"><%= Draft.first.liveBand.to_i  + 1 %></span> </h3>
-	</a>
-</nav>
+  <div id="bands">
+    <% Band.all.each do |band| %>
+      <div class="band-<%= band.number %> band-layout-container">
+        <div class="row">
+          <div class="small-11 small-centered text-center columns">
+            <div class="band-overall-number">BAND <%= band.number %> </div>
+            <ul class="small-block-grid-4 band-layout">
+              <% 4.times do |index| %>
+                <% cur_index = index + 1 %>
+                <% player_sym = "player#{cur_index}".to_sym %>
+                <li>
+                  <% if !band.send(player_sym).blank? %>
+                    <% player = Player.where(number: band.send(player_sym).to_i).first %>
+                    <div class="band-picture">
+                      <img src='<%= "#{player.front_image}" %>'>
+                    </div>
+                    <div class="band-member">
+                      BAND MEMBER #<%="#{cur_index}" %>
+                    </div>
+                    <div class="band-member-name">
+                      <%= player.name %>
+                    </div>
+                  <% else %>
+                    <div class="band-picture">
+                      <img src="/assets/blank-player-gray.png">
+                    </div>
+                    <div class="band-member">
+                      BAND MEMBER #<%="#{cur_index}" %>
+                    </div>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <% end %>
 
-
-<div id="bands">
-<% Band.all.each do |band| %>
-
-<% @player1 = Player.where(number: band.player1.to_i).first %>
-<% @player2 = Player.where(number: band.player2.to_i).first %>
-<% @player3 = Player.where(number: band.player3.to_i).first %>
-<% @player4 = Player.where(number: band.player4.to_i).first %>
-
-	<div class="band-<%=band.number %>">
-
-		<div class="band-number">BAND <%= band.number %> </div>
-
-			
-			<div class="row">
-				<div class="small-6 columns text-center">
-					<div class="player">
-						<h5>Player 1:</h5>
-						<% if !@player1.nil? %>
-							<div class="number">
-								<div class="number-inner"><%= image_tag(@player1.image.url) %> </div>
-							</div>
-							<div class="player-name">
-								<div class="player-name-inner"><%= @player1.name %></div>
-							</div>
-						<% else %>
-						<h1> ? </h1>
-						<% end %>
-					</div>
-				</div>
-			
-
-				<div class="small-6 columns text-center">
-					<div class="player">
-						<h5>Player 2:</h5>
-						<% if !@player2.nil? %>
-							<div class="number">
-								<div class="number-inner"><%= image_tag(@player2.image.url) %> </div>
-							</div>
-							<div class="player-name">
-								<div class="player-name-inner"><%= @player2.name %></div>
-							</div>
-						<% else %>
-						<h1> ? </h1>
-						<% end %>
-					</div>
-				</div>
-			</div>
-			
-
-			
-			<div class="row">
-				<div class="small-6 columns text-center">
-					<div class="player">
-						<h5>Player 3:</h5>
-						<% if !@player3.nil? %>
-							<div class="number">
-								<div class="number-inner"><%= image_tag(@player3.image.url) %> </div>
-							</div>
-							<div class="player-name">
-								<div class="player-name-inner"><%= @player3.name %></div>
-							</div>
-						<% else %>
-						<h1> ? </h1>
-						<% end %>
-					</div>
-				</div>
-
-			
-				<div class="small-6 columns text-center">
-					<div class="player">
-						<h5>Player 4:</h5>
-						<% if !@player4.nil? %>
-							<div class="number">
-								<div class="number-inner"><%= image_tag(@player4.image.url) %> </div>
-							</div>
-							<div class="player-name">
-								<div class="player-name-inner"><%= @player4.name %></div>
-							</div>
-						<% else %>
-						<h1> ? </h1>
-						<% end %>
-					</div>
-				</div>
-			</div>
-			
-
-	</div>
-<% end %>
+  </div>
 
 </div>
 
+
 <script>
-$( document ).ready(function() {
-		
-		//var liveband;
-		var staticLb = <%= Draft.first.liveBand.to_i %>
-		var lb = <%= Draft.first.liveBand.to_i %>
-		var totalBands = <%= Draft.first.numberOfBands %>
-		setCurrentBand(lb);
+    $(document).ready(function () {
+
+        //var liveband;
+        var staticLb =
+        <%= Draft.first.liveBand.to_i %>
+        var lb =
+        <%= Draft.first.liveBand.to_i %>
+        var totalBands = <%= Draft.first.numberOfBands %>
+            setCurrentBand(lb);
 
 
-		function setCurrentBand(band){
-			lb = band
-			if (lb == 1) {
-				pb = totalBands;
-				nb = 2;
+        function setCurrentBand(band) {
+            lb = band
+            if (lb == 1) {
+                pb = totalBands;
+                nb = 2;
 
-			}
-			else if (lb == totalBands){
-				nb = 1;
-				pb = totalBands-1;
-			}
-			else{
-				pb = lb - 1;
-				nb = lb + 1;
-			}
-			$('.bandNumPrev').text(''+pb);
-			$('.bandNumNext').text(''+nb);
-		}
+            } else if (lb == totalBands) {
+                nb = 1;
+                pb = totalBands - 1;
+            } else {
+                pb = lb - 1;
+                nb = lb + 1;
+            }
+            $('.bandNumPrev').text('' + pb);
+            $('.bandNumNext').text('' + nb);
+        }
 
 
-		$(".band-" + lb).siblings().hide();
-		$(".left-control").click(function(){
-			$(".band-" + pb).siblings().hide();
-			$(".band-" + pb).show();
-			setCurrentBand(pb);
-		});
-		$(".right-control").click(function(){
-			$(".band-" + nb).siblings().hide();
-			$(".band-" + nb).show();
-			setCurrentBand(nb);
-		});
+        $(".band-" + lb).siblings().hide();
+        $(".left-control").click(function () {
+            $(".band-" + pb).siblings().hide();
+            $(".band-" + pb).show();
+            setCurrentBand(pb);
+        });
+        $(".right-control").click(function () {
+            $(".band-" + nb).siblings().hide();
+            $(".band-" + nb).show();
+            setCurrentBand(nb);
+        });
 
 
-	showLiveBand = function(liveband) {
-	  		if (liveband != staticLb){
-	  			window.location.href = "updatedBand";
-			}
-	 };
+        showLiveBand = function (liveband) {
+            if (liveband != staticLb) {
+                window.location.href = "updatedBand";
+            }
+        };
 
-	gon.watch('liveband', {
-	  interval: 4000
-	}, showLiveBand);
-
-	
+        gon.watch('liveband', {
+            interval: 4000
+        }, showLiveBand);
 
 
-});
+    });
 </script>

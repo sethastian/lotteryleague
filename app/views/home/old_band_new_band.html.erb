@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="small-12 columns text-center">
+    <h1>TRADE COMPLETE! NEW BANDS:</h1>
+  </div>
+  <div class="small-12 columns">
+    <h3> BAND <%= @current_band.number %>:</h3>
+    <%= render partial: "bands/band", locals: {band: @current_band} %>
+  </div>
+  <div class="small-12 columns">
+    <h3> BAND <%= @previous_band.number %>:</h3>
+    <%= render partial: "bands/band", locals: {band: @previous_band} %>
+  </div>
+</div>
+<div class="row">
+  <div class="small-12 columns text-center" style="margin-top:20px">
+    <%= link_to "Pick New Player", liveplayer_path, class:'button' %>
+  </div>
+</div>

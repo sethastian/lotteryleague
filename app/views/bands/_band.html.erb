@@ -1,0 +1,75 @@
+<style>
+  .player, .player .number{
+    width:100%;
+  }
+</style>
+
+<div id="band-single">
+
+  <% @player1 = Player.where(number: band.player1.to_i).first %>
+  <% @player2 = Player.where(number: band.player2.to_i).first %>
+  <% @player3 = Player.where(number: band.player3.to_i).first %>
+  <% @player4 = Player.where(number: band.player4.to_i).first %>
+
+  <div class="band-<%=band.number %>">
+
+    <div class="row">
+      <% if !@player1.nil? %>
+      <div class="small-3 columns text-center left">
+        <div class="player">
+            <div class="number">
+              <div class="number-inner"><img src='<%= "#{@player1.front_image}" %>'> </div>
+            </div>
+            <div class="player-name">
+              <div class="player-name-inner"><%= @player1.name %></div>
+            </div>
+        </div>
+      </div>
+      <% end %>
+
+      <% if !@player2.nil? %>
+      <div class="small-3 columns text-center left">
+        <div class="player">
+            <div class="number">
+              <div class="number-inner"><img src='<%= "#{@player2.front_image}" %>'> </div>
+            </div>
+            <div class="player-name">
+              <div class="player-name-inner"><%= @player2.name %></div>
+            </div>
+        </div>
+      </div>
+      <% end %>
+
+      <% if !@player3.nil? %>
+      <div class="small-3 columns text-center left">
+        <div class="player">
+            <div class="number">
+              <div class="number-inner"><img src='<%= "#{@player3.front_image}" %>'> </div>
+            </div>
+            <div class="player-name">
+              <div class="player-name-inner"><%= @player3.name %></div>
+            </div>
+        </div>
+      </div>
+      <% end %>
+
+
+      <% if !@player4.nil? %>
+      <div class="small-3 columns text-center left">
+        <div class="player">
+            <div class="number">
+              <div class="number-inner"><img src='<%= "#{@player4.front_image}" %>'> </div>
+            </div>
+            <div class="player-name">
+              <div class="player-name-inner"><%= @player4.name %></div>
+            </div>
+        </div>
+      </div>
+      <% end %>
+
+
+    </div>
+
+  </div>
+
+</div>

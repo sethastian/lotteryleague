@@ -3,10 +3,9 @@
 		<div class="small-8 columns small-centered text-center">
 			<%= link_to "Test Compatibility", livedraft_path(:liveplayer => @player.number), class: 'button tiny' %>
 			<h1><%= @player.name %></h1>
-			<%= puts @player.image.url %>
-			<%= puts "AAAAAAAAAAAAAAAAAA" %>
-			<%= puts @player %>
-			<p><%= image_tag(@player.image.url(:large)) %></p>
+			<p>
+        <img src='<%= "#{@player.back_image}" %>'>
+      </p>
 			
 		</div>
 	</div>

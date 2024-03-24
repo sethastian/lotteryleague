@@ -1,0 +1,48 @@
+/usr/local/rvm/gems/ruby-2.2.1/gems/unicorn-4.9.0/lib/unicorn/http_server.rb:206:in `pid=': Already running on PID:3390 (or pid=/home/lotteryleague/tmp/unicorn.pid is stale) (ArgumentError)
+	from /usr/local/rvm/gems/ruby-2.2.1/gems/unicorn-4.9.0/lib/unicorn/http_server.rb:135:in `start'
+	from /usr/local/rvm/gems/ruby-2.2.1/gems/unicorn-4.9.0/bin/unicorn_rails:209:in `<top (required)>'
+	from /usr/local/rvm/gems/ruby-2.2.1/bin/unicorn_rails:23:in `load'
+	from /usr/local/rvm/gems/ruby-2.2.1/bin/unicorn_rails:23:in `<main>'
+	from /usr/local/rvm/gems/ruby-2.2.1/bin/ruby_executable_hooks:15:in `eval'
+	from /usr/local/rvm/gems/ruby-2.2.1/bin/ruby_executable_hooks:15:in `<main>'
+I, [2024-03-07T18:12:24.178198 #3390]  INFO -- : reaped #<Process::Status: pid 3393 exit 0> worker=0
+I, [2024-03-07T18:12:24.178367 #3390]  INFO -- : master complete
+I, [2024-03-07T18:12:26.520626 #3612]  INFO -- : unlinking existing socket=/tmp/unicorn.lotteryleague.sock
+I, [2024-03-07T18:12:26.520854 #3612]  INFO -- : listening on addr=/tmp/unicorn.lotteryleague.sock fd=10
+I, [2024-03-07T18:12:26.520949 #3612]  INFO -- : worker=0 spawning...
+I, [2024-03-07T18:12:26.526348 #3612]  INFO -- : master process ready
+I, [2024-03-07T18:12:26.530424 #3615]  INFO -- : worker=0 spawned pid=3615
+I, [2024-03-07T18:12:26.530586 #3615]  INFO -- : Refreshing Gem list
+I, [2024-03-07T18:12:28.618555 #3615]  INFO -- : worker=0 ready
+/usr/local/rvm/gems/ruby-2.2.1/gems/unicorn-4.9.0/lib/unicorn/http_server.rb:206:in `pid=': Already running on PID:3612 (or pid=/home/lotteryleague/tmp/unicorn.pid is stale) (ArgumentError)
+	from /usr/local/rvm/gems/ruby-2.2.1/gems/unicorn-4.9.0/lib/unicorn/http_server.rb:135:in `start'
+	from /usr/local/rvm/gems/ruby-2.2.1/gems/unicorn-4.9.0/bin/unicorn_rails:209:in `<top (required)>'
+	from /usr/local/rvm/gems/ruby-2.2.1/bin/unicorn_rails:23:in `load'
+	from /usr/local/rvm/gems/ruby-2.2.1/bin/unicorn_rails:23:in `<main>'
+	from /usr/local/rvm/gems/ruby-2.2.1/bin/ruby_executable_hooks:15:in `eval'
+	from /usr/local/rvm/gems/ruby-2.2.1/bin/ruby_executable_hooks:15:in `<main>'
+I, [2024-03-07T18:13:13.949842 #3612]  INFO -- : reaped #<Process::Status: pid 3615 exit 0> worker=0
+I, [2024-03-07T18:13:13.950982 #3612]  INFO -- : master complete
+I, [2024-03-07T18:14:35.773630 #3652]  INFO -- : unlinking existing socket=/tmp/unicorn.lotteryleague.sock
+I, [2024-03-07T18:14:35.778021 #3652]  INFO -- : listening on addr=/tmp/unicorn.lotteryleague.sock fd=10
+I, [2024-03-07T18:14:35.778229 #3652]  INFO -- : worker=0 spawning...
+I, [2024-03-07T18:14:35.779133 #3652]  INFO -- : master process ready
+I, [2024-03-07T18:14:35.786716 #3655]  INFO -- : worker=0 spawned pid=3655
+I, [2024-03-07T18:14:35.786932 #3655]  INFO -- : Refreshing Gem list
+I, [2024-03-07T18:14:39.301082 #3655]  INFO -- : worker=0 ready
+/usr/local/rvm/gems/ruby-2.2.1/gems/unicorn-4.9.0/lib/unicorn/http_server.rb:206:in `pid=': Already running on PID:3652 (or pid=/home/lotteryleague/tmp/unicorn.pid is stale) (ArgumentError)
+	from /usr/local/rvm/gems/ruby-2.2.1/gems/unicorn-4.9.0/lib/unicorn/http_server.rb:135:in `start'
+	from /usr/local/rvm/gems/ruby-2.2.1/gems/unicorn-4.9.0/bin/unicorn_rails:209:in `<top (required)>'
+	from /usr/local/rvm/gems/ruby-2.2.1/bin/unicorn_rails:23:in `load'
+	from /usr/local/rvm/gems/ruby-2.2.1/bin/unicorn_rails:23:in `<main>'
+	from /usr/local/rvm/gems/ruby-2.2.1/bin/ruby_executable_hooks:15:in `eval'
+	from /usr/local/rvm/gems/ruby-2.2.1/bin/ruby_executable_hooks:15:in `<main>'
+I, [2024-03-07T18:20:40.879249 #3652]  INFO -- : reaped #<Process::Status: pid 3655 exit 0> worker=0
+I, [2024-03-07T18:20:40.879392 #3652]  INFO -- : master complete
+I, [2024-03-07T18:21:06.616013 #3852]  INFO -- : unlinking existing socket=/tmp/unicorn.lotteryleague.sock
+I, [2024-03-07T18:21:06.616278 #3852]  INFO -- : listening on addr=/tmp/unicorn.lotteryleague.sock fd=10
+I, [2024-03-07T18:21:06.616424 #3852]  INFO -- : worker=0 spawning...
+I, [2024-03-07T18:21:06.622508 #3852]  INFO -- : master process ready
+I, [2024-03-07T18:21:06.626544 #3855]  INFO -- : worker=0 spawned pid=3855
+I, [2024-03-07T18:21:06.626734 #3855]  INFO -- : Refreshing Gem list
+I, [2024-03-07T18:21:09.239816 #3855]  INFO -- : worker=0 ready
